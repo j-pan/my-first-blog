@@ -8,18 +8,13 @@
 			<p>Hi there!</p>
 			<p>World...</p>
 		</div>
-		
-		<div>
-			<h2><a href="">My First post</a></h2>
-			<p>published: 12.23.2019, 12:30</p>
-			<p>I have a lot of cool things to say inside this post. Very much smart and cool.</p>
-		</div>
-		
-		<div>
-			<h2><a href="">My second post</a></h2>
-			<p>published: 12.23.2019, 12:30</p>
-			<p>I have some cool things to say inside this post. Very much smart and cool.</p>
-		</div>
-
+        
+        {% for post in posts %}
+            <div>
+                <h2><a href="">{{post.title}}</a></h2>
+                <p>published: {{post.published_date }} by: {{post.author}}</p>
+                <p>{{post.text|linebreaksbr}}</p>
+          	</div>
+        {% endfor %}
 	</body>
 </html>
