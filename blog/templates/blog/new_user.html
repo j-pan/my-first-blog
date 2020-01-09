@@ -1,0 +1,59 @@
+{% extends "blog/base.html" %}
+
+{% block content1 %}
+    <form id="frm1" method='POST'>
+    <!--{% csrf_token %}-->
+        Username:   <input type="text" value=""><br><br>
+        Password:   <input type="text" value=""><br><br><br><br><br>
+        Secret Key: <input type="text" value=""><br><br>
+
+        <button class="btn btn-default" onclick="createUser()">Sign Up</button>
+
+        <script>
+        // This function is not used because it still won't get the CSRF_TOKEN
+        function getCookie(name) {
+            if (!document.cookie) {
+                return null;
+            }
+
+            const xsrfCookies = document.cookie.split(';')
+                .map(c => c.trim())
+                .filter(c => c.startsWith(name + '='));
+
+            if (xsrfCookies.length === 0) {
+                return null;
+            }
+            return decodeURIComponent(xsrfCookies[0].split('=')[1]);
+        }
+
+        function createUser() {
+            //const csrfToken = getCookie('CSRF-TOKEN');
+            //const headers = new Headers({
+            //    'Content-Type': 'x-www-form-urlencoded',
+            //    'X-CSRF-TOKEN': csrfToken
+            //});
+
+            let x = document.getElementById("frm1");
+            let username = x.elements[0].value;
+            let password = x.elements[1].value;
+            let key = x.elements[2].value;
+            if (key != 'JasonRocks!') {
+                alert("BOIIIIII you dunno the secret key.\nGo try ask the Wise Sage of the North for it.");
+            }
+            // Convert to JSON so that the username and password can be passed to Django to create the damn user
+            else{
+                fetch('/create_user/', {
+                    method: 'POST',
+                    //headers,
+                    //credentials: 'include',
+                    body: JSON.stringify({
+                        "username": username,
+                        "password": password
+                    })
+                });  
+            }    
+        }
+        </script>    
+    </form>
+
+{% endblock %}

@@ -1,0 +1,23 @@
+Pythonanywhere login:
+[Admin]
+U: jpanman
+P: SyX
+
+Local blog login:
+[Admin]
+U: jasonp4
+P: Eil
+
+U: first
+P: weak
+
+U: Second
+P: medium
+
+Activate Django:
+C:\Users\Name\djangogirls> myvenv\Scripts\activate
+
+Upload Blog:
+> python manage.py runserver
+
+URL: http://127.0.0.1:8000/
